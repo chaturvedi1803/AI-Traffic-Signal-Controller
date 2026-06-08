@@ -41,10 +41,10 @@ streamlit run dashboard.py
 
 ## Project Structure
 Traffic_AI_Project/
-├── detection.py       # Vehicle detection module
-├── counting.py        # Vehicle counting module  
-├── timer_logic.py     # Signal timer algorithm
-├── dashboard.py       # Web dashboard
+├── detection.py      
+├── counting.py         
+├── timer_logic.py     
+├── dashboard.py       
 └── README.md
 
 ## Algorithm
