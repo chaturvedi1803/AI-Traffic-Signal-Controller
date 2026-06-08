@@ -41,6 +41,7 @@ streamlit run dashboard.py
 
 ## Project Structure
 Traffic_AI_Project/
+
 ├── detection.py      
 ├── counting.py         
 ├── timer_logic.py     
