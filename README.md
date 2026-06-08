@@ -1,68 +1,143 @@
-# 🚦 AI Smart Traffic Signal Controller
+# 🚦 AI-Based Traffic Signal Optimization System
 
-## Project Overview
-An AI-powered traffic signal controller that uses 
-YOLOv8 to detect vehicles in real-time and 
-dynamically adjusts signal timing based on 
-traffic density.
+## 📌 Overview
+This project is a computer vision-based traffic analysis system that detects and classifies vehicles from video feeds using YOLOv8. It estimates traffic density and adjusts signal timing using a rule-based optimization approach.
 
-## Problem Statement
-Traditional traffic signals use fixed timers 
-regardless of actual traffic — causing unnecessary 
-jams and fuel waste.
+The goal is to reduce waiting time at intersections by dynamically responding to real-time traffic conditions instead of fixed-timer signals.
 
-## Solution
-Our AI system analyzes live camera feed and 
-automatically adjusts green light duration based 
-on vehicle count, vehicle type, and wait time.
+---
 
-## Features
-- Real-time vehicle detection (YOLOv8)
-- Dynamic signal timer algorithm
-- Vehicle type classification (Car, Bus, Truck, Bike)
-- Priority scoring system
-- Starvation prevention (force green after 45s)
-- Live traffic analytics graph
-- Web dashboard (Streamlit)
+## ❗ Problem Statement
+Traditional traffic signals operate on fixed timers, which do not adapt to real-time traffic conditions. This often leads to:
+- Unnecessary waiting time
+- Traffic congestion
+- Inefficient road usage
+
+---
+
+## 💡 Proposed Solution
+We built a prototype system that:
+- Detects vehicles in real-time using YOLOv8
+- Estimates traffic density based on detected vehicles
+- Applies a heuristic scoring system to adjust signal timing dynamically
+
+---
+
+## ⚙️ Features
+- Real-time vehicle detection using YOLOv8
+- Vehicle classification (Car, Bus, Truck, Bike)
+- Traffic density estimation
+- Rule-based signal timing adjustment
+- Starvation prevention logic (maximum wait threshold)
+- Traffic analytics visualization
+- Streamlit-based dashboard interface
 - Supports both image and video input
 
-## Tech Stack
+---
+
+## 🛠 Tech Stack
 - Python
 - YOLOv8 (Ultralytics)
 - OpenCV
-- Streamlit
-- Matplotlib
 - NumPy
+- Matplotlib
+- Streamlit
 
-## How to Run
-pip install ultralytics streamlit opencv-python matplotlib numpy
+---
 
-streamlit run dashboard.py
+## 🧠 Approach / Logic
 
-## Project Structure
+### Vehicle Detection
+YOLOv8 model is used to detect vehicles from each frame of video input.
+
+### Traffic Scoring
+Signal priority is calculated using:
+- Vehicle count
+- Vehicle type weights
+- Waiting time
+
+**Vehicle Weights:**
+
+| Vehicle | Weight |
+|---------|--------|
+| Car     | 1.0    |
+| Bike    | 0.5    |
+| Bus     | 3.0    |
+| Truck   | 3.0    |
+
+### Signal Timing Formula
+```
+Priority Score = (vehicle_count × avg_weight × 1.5) + (wait_time × 2)
+```
+
+---
+
+## 📂 Project Structure
+```
 Traffic_AI_Project/
-
-├── detection.py      
-├── counting.py         
-├── timer_logic.py     
-├── dashboard.py       
+│
+├── detection.py      # YOLOv8-based vehicle detection
+├── counting.py       # Vehicle counting logic
+├── timer_logic.py    # Signal timing algorithm
+├── dashboard.py      # Streamlit web dashboard
 └── README.md
+```
 
-## Algorithm
-Priority Score = (vehicle_count × avg_weight × 1.5) 
-                + (wait_time × 2)
+---
 
-Vehicle Weights:
-- Car   = 1.0
-- Bike  = 0.5
-- Bus   = 3.0
-- Truck = 3.0
+## 📸 Screenshots
 
-## Built In
-3 days as a first real-world AI project.
+### Dashboard
+![Dashboard]
+<img width="1366" height="728" alt="AI Traffic Controller and 21 more pages - Personal - Microsoft​ Edge 09-06-2026 02_09_12" src="https://github.com/user-attachments/assets/f6ab465a-5174-44d2-8470-b340d84fc5f2" />
 
-## Future Improvements
-- 4-lane traffic management (North, South, East, West)
-- Ambulance/Emergency vehicle priority detection
-- Custom YOLOv8 training for Indian vehicles
-- Real CCTV camera integration
+
+### Vehicle Detection
+![Detection]
+<img width="1366" height="728" alt="AI Traffic Controller and 21 more pages - Personal - Microsoft​ Edge 09-06-2026 02_46_24" src="https://github.com/user-attachments/assets/e8484f24-add3-48cc-a775-fd958ed57f2c" />
+
+<img width="1366" height="728" alt="AI Traffic Controller and 21 more pages - Personal - Microsoft​ Edge 09-06-2026 02_46_06" src="https://github.com/user-attachments/assets/901542cb-c280-4330-baa8-55617d7d0d47" />
+
+<img width="1366" height="728" alt="Claude 09-06-2026 02_45_52" src="https://github.com/user-attachments/assets/0396a774-4c66-4c92-b830-af3c92812cd4" />
+
+---
+
+## ▶️ How to Run
+
+**1. Install dependencies**
+```bash
+pip install ultralytics opencv-python streamlit matplotlib numpy
+```
+
+**2. Run dashboard**
+```bash
+streamlit run dashboard.py
+```
+
+---
+
+## 📊 Output
+- Live vehicle detection on video/image input
+- Real-time traffic density estimation
+- Dynamic signal timing visualization
+- Graph-based traffic analytics
+
+---
+
+## 🚀 Future Improvements
+- Multi-lane (4-direction) traffic management
+- Emergency vehicle priority detection (ambulance/fire)
+- DeepSORT-based vehicle tracking for accurate counting
+- Reinforcement Learning-based signal optimization
+- Real-world CCTV integration
+
+---
+
+## 👩‍💻 Developer
+Built in 3 days as a hands-on learning project
+combining Computer Vision and Web Development.
+
+---
+
+## 📌 Note
+This is a prototype system demonstrating computer vision-based traffic analysis and rule-based optimization. It can be extended into a full reinforcement learning-based adaptive traffic control system.
