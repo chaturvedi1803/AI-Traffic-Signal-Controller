@@ -18,7 +18,7 @@ st.markdown("""
 <style>
 .stApp {
     background-color: #0f0f1a;
-    color: C;
+    color: Coral;
 }
 .stMetric {
     background-color: #1a1a2e;
